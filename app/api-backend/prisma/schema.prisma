@@ -3,9 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 enum BookingStatus {
@@ -28,11 +27,8 @@ model Room {
   id            String    @id @default(cuid())
   number        String    @unique
   type          String
-  description   String?
   pricePerNight Decimal   @db.Decimal(10, 2)
   isAvailable   Boolean   @default(true)
-  amenities     String[]
-  images        String[]
   metadata      Json?
   bookings      Booking[]
 
@@ -52,21 +48,4 @@ model Booking {
   @@index([userId])
   @@index([roomId])
   @@map("bookings")
-}
-
-enum Role {
-  USER
-  AGENT
-  SYSTEM
-}
-
-model Message {
-  id        String   @id @default(cuid())
-  sessionId String
-  role      Role
-  content   String   @db.Text
-  createdAt DateTime @default(now())
-
-  @@index([sessionId])
-  @@map("messages")
 }
