@@ -2,32 +2,36 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { Search } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <motion.nav 
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-10 py-6 text-white mix-blend-difference w-full pointer-events-auto"
-    >
-      <div className="flex items-center gap-4 text-[10px] md:text-xs tracking-[0.2em] font-medium uppercase">
-        <a href="#" className="bg-white text-black px-6 py-2.5 rounded-full hover:bg-white/90 transition-colors">HOME</a>
-        <a href="#" className="border border-white/20 px-6 py-2.5 rounded-full hover:bg-white/10 transition-colors backdrop-blur-md hidden md:block">BOOKING</a>
-        <a href="#" className="border border-white/20 px-6 py-2.5 rounded-full hover:bg-white/10 transition-colors backdrop-blur-md hidden md:block">Gallary</a>
-        <a href="#" className="border border-white/20 px-6 py-2.5 rounded-full hover:bg-white/10 transition-colors backdrop-blur-md hidden lg:block">Packages</a>
-        <a href="#" className="border border-white/20 px-6 py-2.5 rounded-full hover:bg-white/10 transition-colors backdrop-blur-md hidden lg:block">About</a>
-      </div>
-
-      
-
-      <div className="flex items-center gap-6 text-[10px] md:text-xs tracking-[0.2em] font-medium uppercase">
-       
-        <a href="#" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          Restaurant Menu  <ArrowRight className="w-4 h-4 font-light ml-1" />
-        </a>
-      </div>
-    </motion.nav>
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none w-full">
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 100, damping: 20, mass: 1, delay: 0.1 }}
+        className="pointer-events-auto flex items-center mt-6 bg-white/40 backdrop-blur-3xl border border-black rounded-full p-2.5 shadow-2xl w-max mix-blend-normal"
+      >
+        <div className="flex items-center gap-2 md:gap-5 text-sm font-normal tracking-wider text-black/70 px-2">
+          <a 
+            href="#" 
+            className="flex items-center gap-2 bg-black/5 hover:bg-black/10 text-black px-5 py-2.5 rounded-full transition-all duration-300"
+          >
+            <span>HOME</span>
+          </a>
+          
+          <a href="#" className="hover:text-black transition-colors px-4 py-2">BOOKING</a>
+          <a href="#" className="hover:text-black transition-colors px-4 py-2">GALLERY</a>
+          <a href="#" className="hover:text-black transition-colors px-4 py-2 hidden lg:block">PACKAGES</a>
+          <a href="#" className="hover:text-black transition-colors px-4 py-2 hidden lg:block">ABOUT</a>
+          
+          <div className="w-px h-4 bg-black/20 mx-1 hidden sm:block"></div>
+          <button aria-label="Search" className="w-10 h-10 flex justify-center items-center rounded-full hover:bg-black/5 text-black transition-all duration-300">
+            <Search className="w-4 h-4" />
+          </button>
+        </div>
+      </motion.nav>
+    </div>
   );
 }
